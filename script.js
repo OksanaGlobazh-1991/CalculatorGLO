@@ -23,21 +23,22 @@ let amount2 = +prompt('Во сколько это обойдется?');
 let period = 8;
 let mission = 1000000000000000;
 
-function getExpensesMonth () {
-  return (amount1 + amount2);
+function getExpensesMonth (amount1, amount2) {
+  return amount1 + amount2;
 }
-console.log(getExpensesMonth());
+console.log(getExpensesMonth(amount1, amount2));
 
-function getAccumulatedMonth () {
-  return (money - getExpensesMonth());
+function getAccumulatedMonth (money, amount1, amount2) {
+  return (money - (amount1 + amount2));
 }
-const accumulatedMonth = getAccumulatedMonth ();
+
+const accumulatedMonth = getAccumulatedMonth (money, amount1, amount2);
 
 
-function getTargetMonth() {
+function getTargetMonth(mission, accumulatedMonth) {
   return (mission/accumulatedMonth);
 }
-console.log(getTargetMonth());
+console.log(getTargetMonth(mission, accumulatedMonth));
 
 let budgetDay = (accumulatedMonth/30);
 console.log(`Бюджет на день ${Math.floor(budgetDay)}`);
