@@ -27,7 +27,7 @@ console.log(showTypeOf(deposit));
 let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
 console.log(addExpenses.split(', '));
 
-let expenses1;
+let expenses = [];
 let period = 8;
 let mission = 1000000000000000;
 
@@ -35,10 +35,11 @@ function getExpensesMonth () {
   let sum = 0;
 
   for (let i = 0; i < 2; i++) {
-    expenses1 = prompt('Введите обязательную статью расходов?');
+    expenses[i] = prompt('Введите обязательную статью расходов?');
     sum += +prompt('Во сколько это обойдется?');
   }
   console.log(showTypeOf(sum));
+  
   return sum;
 };
 
