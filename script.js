@@ -65,6 +65,8 @@ let appData = {
     };
   },     
 };
+appData.getBudget();
+
 console.log(appData.asking());
 console.log(appData.getExpensesMonth());
 console.log(appData);
