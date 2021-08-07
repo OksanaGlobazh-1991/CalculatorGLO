@@ -65,8 +65,9 @@ let appData = {
     };
   },     
 };
-
-
+console.log(appData.asking());
+console.log(appData.getExpensesMonth());
+console.log(appData);
 
 let result = appData.getTargetMonth();
 if (result < 0) {
@@ -78,12 +79,12 @@ if (result < 0) {
 
 // appData.expensesMonth = appData.getExpensesMonth();
 // const accumulatedMonth = appData.getBudget(money, expensesAmount);
-console.log(appData.getExpensesMonth());
-console.log(appData.expensesMonth);
-console.log(appData.getStatusIncome());
-console.log(appData.asking());
 
-console.log(appData);
+
+console.log(appData.getStatusIncome());
+// console.log(appData.asking());
+// console.log(appData.getExpensesMonth());
+// console.log(appData);
 
 
 // let budgetDay = (accumulatedMonth/30);
