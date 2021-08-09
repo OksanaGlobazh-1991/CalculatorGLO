@@ -51,7 +51,7 @@ let appData = {
         }
 
     let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Коммуналка, топливо, салон');
-        appData.addExpenses = addExpenses.toLowerCase().split(',');
+        appData.addExpenses = addExpenses.toLowerCase().split(', ');
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
         function getImportantExpenses() {
@@ -136,3 +136,5 @@ console.log(appData.getStatusIncome());
 for (let key in appData) {
   console.log('Наша программа включает в себя данные:' + key + ' : ' + appData[key]);
 }
+
+console.log(appData.addExpenses.map(n => {return n[0].toUpperCase() + n.slice(1)}).join(', '));
