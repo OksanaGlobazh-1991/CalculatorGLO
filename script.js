@@ -32,24 +32,22 @@ let appData = {
   expensesMonth: 0,
   asking: function () {
         if (confirm('Есть ли у вас дополнительный заработок?')) {
+          let itemIncome; let cashIncome; 
+          let getitemIncome = function () {
+            do {
+              itemIncome = prompt("Какой у вас дополнительный заработок?", 'массаж');
+            }
+            while (isNumber(itemIncome) || itemIncome === null || itemIncome === '' || itemIncome.trim() === '');
+
+            do {
+              cashIncome = prompt ('Какой доход вам это приносит?', '2000');
+            }
+            while (!isNumber(cashIncome));
+            appData.income[itemIncome] = cashIncome;
+          }
           
-          function getItemIncome () {
-            let itemIncome = prompt("Какой у вас дополнительный заработок?", 'массаж');
-            if (isNumber(itemIncome) || itemIncome === null || itemIncome === '' || itemIncome.trim() === '') {
-              return getItemIncome();
-            } 
-          }
-          getItemIncome();
-
-          function getCashIncome () {
-            let cashIncome = prompt ('Какой доход вам это приносит?', '2000');
-            if (!isNumber(cashIncome)) {
-              return getCashIncome();
-            } 
-          }
-          getCashIncome();  
+          getitemIncome();
         }
-
     let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Коммуналка, топливо, салон');
         appData.addExpenses = addExpenses.toLowerCase().split(', ');
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
