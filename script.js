@@ -17,7 +17,7 @@ let start = function () {
   
 let expenses = [];
 let appData = {
-  income: {},//наши дополнительные доходы
+  income: {},
   addIncome: [], //перечислим доп доходы
   expenses: {}, //дополнительные расходы
   addExpenses: [], //возможные расходы
