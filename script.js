@@ -33,7 +33,6 @@ let isNumber = function (n) {
 isNumber();
 
   
-let expenses = [];
 let appData = {
   income: {},
   addIncome: [], //перечислим доп доходы
@@ -57,9 +56,16 @@ let appData = {
     appData.budget = salaryAmount.value;
 
     appData.getExpenses();
-    // appData.asking();
-    // appData.getExpensesMonth();
-    // appData.getBudget();
+    appData.getExpensesMonth();
+    appData.getBudget();
+
+    appData.showResult();
+  },
+  showResult: function(){
+    budgetMonthValue.value = appData.budgetMonth;
+    budgetDayValue.value = appData.budgetDay;
+    expensesMonthValue.value = appData.expensesMonth;
+
   },
   addExpensesBlock: function () {
 
@@ -73,18 +79,21 @@ let appData = {
   },
   getExpenses: function(){
     expensesItems.forEach(function(item) {
-      console.log(item);
+      let itemExpenses = item.querySelector('.expenses-title').value;
+      let cashExpenses = item.querySelector('.expenses-amount').value;
+        if (itemExpenses !== '' && cashExpenses !== '') {
+          appData.expenses[itemExpenses] = cashExpenses;
+        }
+
     });
   },
   asking: function () {
         if (confirm('Есть ли у вас дополнительный заработок?')) {
           let itemIncome; let cashIncome; 
-          
             do {
               itemIncome = prompt("Какой у вас дополнительный заработок?", 'массаж');
             }
             while (isNumber(itemIncome) || itemIncome === null || itemIncome === '' || itemIncome.trim() === '');
-
             do {
               cashIncome = prompt ('Какой доход вам это приносит?', '2000');
             }
@@ -94,24 +103,13 @@ let appData = {
           
     let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Коммуналка, топливо, салон');
         appData.addExpenses = addExpenses.toLowerCase().split(', ');
-        appData.deposit = confirm('Есть ли у вас депозит в банке?');
-        let sumImportantExpenses = 0; let importantExpenses = 0;
-        for (let i = 0; i < 2; i++) {
-          do {
-        importantExpenses = prompt('Введите обязательную статью расходов?');
-          }
-        while (isNumber(importantExpenses) || importantExpenses === null || importantExpenses === '' || importantExpenses.trim() === '');
-        sumImportantExpenses = +prompt('Во сколько это обойдется?');
-        appData.expenses[importantExpenses]=sumImportantExpenses;  
-        }
+        
       
   },    
   getExpensesMonth: function () {
-    let sum = 0; 
     for (let key in appData.expenses) {
-      sum += appData.expenses[key];
+      appData.expensesMonth += +appData.expenses[key];
     }
-    return appData.expensesMonth = sum;
   },
   getBudget: function () {
     appData.budgetMonth = appData.budget - appData.expensesMonth;
@@ -133,6 +131,8 @@ let appData = {
     };
   },
   getInfoDeposit: function () {
+    appData.deposit = confirm('Есть ли у вас депозит в банке?');
+
     if(appData.deposit) {
         do {
         appData.percentDeposit = prompt('Какой годовой процент?', '10');
