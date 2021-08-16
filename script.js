@@ -48,7 +48,7 @@ let appData = {
   start: function () {
     if (salaryAmount.value === '') {
       start.removeAttribute(disabled);
-    };
+    }
 
     appData.budget = +salaryAmount.value;
 
