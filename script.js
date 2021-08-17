@@ -36,18 +36,18 @@ isNumber();
 
   
 let appData = {
-  income: {},
-  addIncome: [], //перечислим доп доходы
-  expenses: {}, //дополнительные расходы
-  addExpenses: [], //возможные расходы
-  incomeMonth: 0,
-  deposit: false,
-  percentDeposit: 0,
-  moneyDeposit: 0,
-  budget: 0,
-  budgetDay: 0,
-  budgetMonth: 0,
-  expensesMonth: 0,
+    income: {},
+    addIncome: [], //перечислим доп доходы
+    expenses: {}, //дополнительные расходы
+    addExpenses: [], //возможные расходы
+    incomeMonth: 0,
+    deposit: false,
+    percentDeposit: 0,
+    moneyDeposit: 0,
+    budget: 0,
+    budgetDay: 0,
+    budgetMonth: 0,
+    expensesMonth: 0,
   start: function () {
     if (salaryAmount.value === '') {
       start.removeAttribute('disabled');
@@ -55,9 +55,9 @@ let appData = {
     }
     appData.budget = +salaryAmount.value;
     
-    let inputAllLeft = document.querySelectorAll('.data input[type=text]');
-        inputAllLeft.forEach(function(item){
-          item.setAttribute('disabled', 'disabled');
+    const inputAllLeft = document.querySelectorAll('.data input[type=text]');
+            inputAllLeft.forEach(function(item){
+              item.setAttribute('disabled', 'disabled');
         })
     oneButton.setAttribute('disabled', 'disabled');
     twoButton.setAttribute('disabled', 'disabled');
@@ -65,15 +65,15 @@ let appData = {
     start.style.display = 'none';
     cancel.style.display = 'block';
 
-    appData.getExpenses();
-    appData.getExpensesMonth();
-    appData.getAddExpenses();
-    appData.getIncome();
-    appData.getAddIncome();
-    appData.getPeriodAmount();
-    appData.getBudget();
+    this.getExpenses();
+    this.getExpensesMonth();
+    this.getAddExpenses();
+    this.getIncome();
+    this.getAddIncome();
+    this.getPeriodAmount();
+    this.getBudget();
 
-    appData.showResult();
+    this.showResult();
   },
   showResult: function(){
     budgetMonthValue.value = this.budgetMonth;
@@ -92,7 +92,7 @@ let appData = {
   },
   reset: function(){
 
-    let inputAllLeftsecond = document.querySelectorAll('.data input[type=text]');
+    const inputAllLeftsecond = document.querySelectorAll('.data input[type=text]');
             inputAllLeftsecond.forEach(function(elem){
               elem.value = '';
             })
@@ -101,8 +101,8 @@ let appData = {
             twoButton.style.display = 'none';
             periodSelect.value = 0;
             titlePeriodAmount.innerHTML = periodSelect.value;
-
-        result = document.querySelectorAll('.result input[type=text]');
+            
+          result = document.querySelectorAll('.result input[type=text]');
             result.forEach(function(elem) {
               elem.value = '';
 
@@ -111,7 +111,7 @@ let appData = {
   },
   addExpensesBlock: function () {
 
-    let cloneExpensesItems = expensesItems[0].cloneNode(true);
+    const cloneExpensesItems = expensesItems[0].cloneNode(true);
     expensesItems[0].parentNode.insertBefore(cloneExpensesItems, twoButton);
     expensesItems = document.querySelectorAll('.expenses-items');
 
@@ -129,7 +129,7 @@ let appData = {
     });
   },
   addIncomeBlock: function(){
-    let cloneIncomeItems = incomeItems[0].cloneNode(true);
+    const cloneIncomeItems = incomeItems[0].cloneNode(true);
     incomeItems[0].parentNode.insertBefore(cloneIncomeItems, oneButton);
     incomeItems = document.querySelectorAll('.income-items');
     if (incomeItems.length === 3) {
@@ -214,7 +214,7 @@ let appData = {
 };
 
 
-start.addEventListener('click', appData.start);
+start.addEventListener('click', appData.start.bind(appData));
 twoButton.addEventListener('click', appData.addExpensesBlock);
 oneButton.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('input', appData.getPeriodAmount);
