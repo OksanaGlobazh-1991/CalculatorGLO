@@ -7,21 +7,28 @@ function DomElement(selector, height, width, bg, fontSize){
 };
 
 DomElement.prototype.getElement = function(){
-  let div = 'selector';
-  if(div[0] === '.') {
-    let div = document.createElement('div');
-    div.className = 'selector';
-  } else if(div[0] === '#') {
-    let p = document.createElement('p');
-    p.setAttribute = ('id', 'selector');
-  }
+  if(this.selector[0] === '.') {
+    let div1 = document.createElement('div');
+    div1.className = 'selector';
+    div1.style.cssText = `height: 50px; width: 100px; background: red; font-size: 20px`;
+    div1.textContent = 'есть надежда';
+    document.body.append(div1);
+
+  } else if(this.selector[0] === '#') {
+    let div1 = document.createElement('p');
+    div1.setAttribute = ('id', 'selector');
+    document.body.append(div1);
+    div1.style.cssText = `height: 50px; width: 100px; background: red; font-size: 20px`;
+    div1.textContent = 'есть надежда';
+
+  };
+  
 };
 
-document.body.style.cssText = height;
-document.body.style.cssText = width;
-document.body.style.cssText = bg;
-document.body.style.cssText = fontSize;
 
-let home1 = new DomElement ('.doors', '20px', '30px', 'red', '15px');
+
+let home1 = new DomElement ('.doors', '50px', '100px', 'red', '20px');
+
 home1.getElement();
+
 console.log(home1);
