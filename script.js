@@ -68,6 +68,7 @@ AppData.prototype.start = function(){
   start.style.display = 'none';
   cancel.style.display = 'block';
 
+  
   this.getExpenses();
   this.getExpensesMonth();
   this.getAddExpenses();
@@ -223,6 +224,12 @@ AppData.prototype.getPeriodAmount = function() {
 
 AppData.prototype.eventsListeners = function(){
   
+  start.addEventListener('click', this.start.bind(appData));
+  twoButton.addEventListener('click', this.addExpensesBlock);
+  oneButton.addEventListener('click', this.addIncomeBlock);
+  periodSelect.addEventListener('input', this.getPeriodAmount);
+  cancel.addEventListener('click', this.reset);
+
 };
 
 
@@ -230,12 +237,11 @@ const appData = new AppData();
 
 console.log(appData);
 
+appData.eventsListeners();
 
-start.addEventListener('click', appData.start.bind(appData));
-twoButton.addEventListener('click', appData.addExpensesBlock);
-oneButton.addEventListener('click', appData.addIncomeBlock);
-periodSelect.addEventListener('input', appData.getPeriodAmount);
-cancel.addEventListener('click', appData.reset)
+
+
+
 // let result = appData.getTargetMonth();
 // if (result < 0) {
 //   console.log('Цель не будет достигнута');
