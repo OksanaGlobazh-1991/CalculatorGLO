@@ -236,10 +236,6 @@ class AppData {
   getInfoDeposit (){
     if (this.deposit) 
         this.percentDeposit = depositPercent.value;
-        if (!isNumber(depositPercent.value) || depositPercent.value > 100 || depositPercent.value < 0) {
-          alert('Введите корректное значение в поле проценты'); 
-          start.disabled = true; 
-        }
         this.moneyDeposit = depositAmount.value;
 
   }
@@ -247,10 +243,19 @@ class AppData {
   changePercent (){
     const valueSelect = this.value;
     if (valueSelect === 'other') {
-      depositPercent.style.display = 'inline-block'; 
+      depositPercent.style.display = 'inline-block';
+      depositPercent.addEventListener('input', function() {
+      if (!isNumber(depositPercent.value) || depositPercent.value > 100 || depositPercent.value < 0) {
+        alert('Введите корректное значение в поле проценты'); 
+        start.disabled = true; 
+      }
+      })
     } else {
-      depositPercent.value = valueSelect; 
-    }   
+      depositPercent.value = valueSelect;
+      start.disabled = false; 
+ 
+    } 
+
   }
   depositHandler (){
     if (depositCheck.checked) {
