@@ -25,8 +25,8 @@ const additionalExpensesItem = document.querySelector('.additional_expenses-item
       periodSelect = document.querySelector('.period-select'),
       budgetMonthValue = document.getElementsByClassName('result-total budget_month-value')[0],
       titlePeriodAmount = document.querySelector('.period-amount'),
-      cancel = document.getElementById('cancel'),
-      result = document.querySelectorAll('.result input[type=text]');
+      cancel = document.getElementById('cancel');
+  let result = document.querySelectorAll('.result input[type=text]');
     
 
 const isNumber = function (n) {
@@ -100,13 +100,19 @@ class AppData {
             inputAllLeftsecond.forEach(function(elem){
               elem.value = '';
             })
-
-      oneButton.style.display = 'none';
-      twoButton.style.display = 'none';
+      
+      for (let i = 1; i < incomeItems.length; i++)
+      incomeItems[i].parentNode.removeChild(incomeItems[i]);
+      oneButton.style.display = 'block';
+      
+      for (let i = 1; i < expensesItems.length; i++)
+      expensesItems[i].parentNode.removeChild(expensesItems[i]);
+      twoButton.style.display = 'block';
+      
       periodSelect.value = 0;
       titlePeriodAmount.innerHTML = periodSelect.value;
             
-          result = document.querySelectorAll('.result input[type=text]');
+        let result = document.querySelectorAll('.result input[type=text]');
             result.forEach(function(elem) {
               elem.value = '';
             })
@@ -235,7 +241,7 @@ class AppData {
     twoButton.addEventListener('click', this.addExpensesBlock);
     oneButton.addEventListener('click', this.addIncomeBlock);
     periodSelect.addEventListener('input', this.getPeriodAmount);
-    cancel.addEventListener('click', this.reset);
+    cancel.addEventListener('click', this.reset.bind(appData));
   }
 
 };
