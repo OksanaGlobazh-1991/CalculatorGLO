@@ -57,7 +57,6 @@ class AppData {
       return
     }
     this.budget = +salaryAmount.value;
-    
     const inputAllLeft = document.querySelectorAll('.data input[type=text]');
             inputAllLeft.forEach(function(item){
               item.setAttribute('disabled', true);
