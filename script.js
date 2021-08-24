@@ -64,6 +64,7 @@ class AppData {
     oneButton.setAttribute('disabled', true);
     twoButton.setAttribute('disabled', true);
   
+    
     start.style.display = 'none';
     cancel.style.display = 'block';
   
@@ -99,6 +100,7 @@ class AppData {
     const inputAllLeftsecond = document.querySelectorAll('.data input[type=text]');
             inputAllLeftsecond.forEach(function(elem){
               elem.value = '';
+              elem.removeAttribute('disabled');
             })
       
       for (let i = 1; i < incomeItems.length; i++)
@@ -116,6 +118,9 @@ class AppData {
             result.forEach(function(elem) {
               elem.value = '';
             })
+      
+      cancel.style.display = 'none';        
+      start.style.display = 'block';
   }
   
   addExpensesBlock (){
