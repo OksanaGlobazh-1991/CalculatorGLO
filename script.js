@@ -248,11 +248,12 @@ class AppData {
       if (!isNumber(depositPercent.value) || depositPercent.value > 100 || depositPercent.value < 0) {
         alert('Введите корректное значение в поле проценты'); 
         start.disabled = true; 
+      } else {
+        start.disabled = false;
       }
-      })
+      }) 
     } else {
       depositPercent.value = valueSelect;
-      start.disabled = false; 
  
     } 
 
